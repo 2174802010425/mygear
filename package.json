@@ -5,19 +5,31 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
-    "start": "next start"
+    "start": "next start",
+    "typegen": "npx sanity@latest schema extract && npx sanity@latest typegen generate"
   },
   "dependencies": {
+    "@portabletext/react": "^4.0.3",
+    "@sanity/image-url": "^1.2.0",
+    "@sanity/vision": "^4.10.2",
+    "lucide-react": "^0.545.0",
+    "next": "15.5.4",
+    "next-sanity": "^11.4.2",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "next": "15.5.4"
+    "sanity": "^4.10.2",
+    "styled-components": "^6.1.19"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@tailwindcss/postcss": "^4",
+    "@types/babel__core": "^7.20.5",
+    "@types/babel__generator": "^7.27.0",
+    "@types/babel__template": "^7.4.4",
+    "@types/babel__traverse": "^7.28.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4"
+    "tailwindcss": "^4",
+    "typescript": "^5"
   }
 }
