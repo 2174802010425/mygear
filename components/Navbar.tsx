@@ -21,7 +21,7 @@ export default function Navbar() {
             height={44}
             className="rounded-full object-cover"
           />
-          <span className="font-bold text-xl text-gray-800">HuyAuto</span>
+          <span className="font-bold text-xl text-gray-800">MyGear</span>
         </Link>
 
         
