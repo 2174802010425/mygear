@@ -9,7 +9,7 @@ export default async function HomePage() {
 
   return (
     <main className="min-h-screen bg-gray-50 pt-24 pb-10 px-6">
-      <h1 className="text-3xl font-bold text-center mb-10">🚗 Đại lý Ô tô HuyAuto</h1>
+      <h1 className="text-3xl font-bold text-center mb-10">Mygear</h1>
     
       {/* GRID hiển thị 3 cột */}
       <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
