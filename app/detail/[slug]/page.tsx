@@ -2,6 +2,7 @@ import { getCarDetail } from "@/sanity/schemaTypes/actions/getCarDetail"
 import { notFound } from "next/navigation"
 import Image from "next/image"
 import { urlFor } from "@/sanity/lib/image"
+import { PortableText } from "next-sanity"
 
 export default async function CarDetailPage({
   params,
@@ -74,24 +75,7 @@ export default async function CarDetailPage({
               <h2 className="text-2xl font-semibold mb-3 text-gray-900">
                 Mô tả chi tiết
               </h2>
-              <p>{carDetail.description}</p>
-            </div>
-          )}
-
-          {/* Các thông số kỹ thuật */}
-          {carDetail.specs && (
-            <div className="mt-6 border-t pt-6">
-              <h2 className="text-2xl font-semibold mb-3 text-gray-900">
-                Thông số kỹ thuật
-              </h2>
-              <ul className="grid sm:grid-cols-2 gap-x-8 gap-y-4 text-gray-700">
-                {Object.entries(carDetail.specs).map(([key, value]) => (
-                  <li key={key} className="flex justify-between">
-                    <span className="capitalize text-gray-600">{key}</span>
-                    <span className="font-medium">{String(value)}</span>
-                  </li>
-                ))}
-              </ul>
+              <PortableText value={carDetail.description}/>
             </div>
           )}
         </div>
