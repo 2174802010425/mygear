@@ -53,7 +53,7 @@ export default async function CarDetailPage({
             )}
             {carDetail.brand && (
               <span className="text-lg text-gray-600">
-                🚘 Brand:{" "}
+                Brand:{" "}
                 <span className="font-medium text-gray-800">
                   {carDetail.brand.name}
                 </span>
