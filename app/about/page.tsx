@@ -1,3 +1,4 @@
+import Link from 'next/link'
 export default function AboutPage() {
   return (
     <>
@@ -119,11 +120,11 @@ export default function AboutPage() {
                     Đừng ngần ngại liên hệ hoặc ghé thăm cửa hàng của chúng tôi để trải nghiệm sự khác biệt.
                 </p>
                 <div className="space-y-4 md:space-y-0 md:space-x-6">
-                    <a href="[ĐƯỜNG DẪN ĐẾN TRANG SẢN PHẨM/SHOP ONLINE]" className="inline-block px-8 py-3 bg-red-600 text-white font-bold text-lg rounded-full shadow-lg hover:bg-red-700 transition duration-300 transform hover:scale-105">
+                    <Link href="/" className="inline-block px-8 py-3 bg-red-600 text-white font-bold text-lg rounded-full shadow-lg hover:bg-red-700 transition duration-300 transform hover:scale-105">
                         👉 Xem Sản Phẩm Online Ngay!
-                    </a>
+                    </Link>
                     <a href="tel:[SỐ ĐIỆN THOẠI CỦA BẠN]" className="inline-block px-8 py-3 bg-gray-700 text-white font-bold text-lg rounded-full shadow-lg hover:bg-gray-800 transition duration-300 transform hover:scale-105">
-                        📞 Hotline: [SỐ ĐIỆN THOẠI CỦA BẠN]
+                        📞 Hotline: 0931469037
                     </a>
                 </div>
                 <p className="mt-4 text-sm text-gray-500">
