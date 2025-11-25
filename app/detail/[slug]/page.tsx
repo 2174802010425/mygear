@@ -1,51 +1,51 @@
-import { getCarDetail } from "@/sanity/schemaTypes/actions/getCarDetail"
-import { notFound } from "next/navigation"
-import Image from "next/image"
-import { urlFor } from "@/sanity/lib/image"
-import { PortableText } from "next-sanity"
+import { getCarDetail } from "@/sanity/schemaTypes/actions/getCarDetail";
+import { notFound } from "next/navigation";
+import Image from "next/image";
+import { urlFor } from "@/sanity/lib/image";
+import { PortableText } from "next-sanity";
 
 export default async function CarDetailPage({
   params,
 }: {
-  params: Promise<{ slug: string }>
+  params: Promise<{ slug: string }>;
 }) {
-  const { slug } = await params
-  const carDetail = await getCarDetail(slug)
+  const { slug } = await params;
+  const carDetail = await getCarDetail(slug);
 
-  console.log("Slug:", slug)
-  console.log("Car Detail:", carDetail)
-
-  if (!carDetail) {
-    notFound()
-  }
+  if (!carDetail) notFound();
 
   return (
-    <div className="min-h-screen bg-gray-50 py-16 px-6">
-      <div className="max-w-5xl mx-auto bg-white rounded-3xl shadow-lg overflow-hidden">
+    <article className="min-h-screen bg-gray-50 py-16 px-6">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12">
         {/* Ảnh sản phẩm */}
-        <div className="relative w-full h-[400px] bg-gray-200">
+        <figure className="w-full h-auto bg-white rounded-2xl shadow-md p-3">
           {carDetail.image ? (
             <Image
               src={urlFor(carDetail.image).url()}
-              alt={carDetail.name}
-              fill
-              className="object-cover"
+              alt={`Hình ảnh ${carDetail.name}`}
+              width={900}
+              height={600}
+              className="rounded-xl object-cover w-full h-auto"
               priority
             />
           ) : (
-            <div className="flex items-center justify-center h-full text-gray-400">
+            <div className="flex items-center justify-center h-[300px] text-gray-400">
               No image available
             </div>
           )}
-        </div>
+          <figcaption className="text-sm text-gray-500 mt-2">
+            {carDetail.name}
+          </figcaption>
+        </figure>
 
-        {/* Nội dung */}
-        <div className="p-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-3">
+        {/* Nội dung sản phẩm */}
+        <header className="bg-white rounded-2xl p-8 shadow-md">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4 leading-tight">
             {carDetail.name}
           </h1>
 
-          <div className="flex flex-wrap items-center gap-6 mb-6">
+          {/* Giá + Brand + Year */}
+          <div className="flex flex-wrap items-center gap-5 mb-6">
             {carDetail.price && (
               <p className="text-3xl font-semibold text-red-600">
                 {carDetail.price.toLocaleString()} ₫
@@ -53,33 +53,61 @@ export default async function CarDetailPage({
             )}
             {carDetail.brand && (
               <span className="text-lg text-gray-600">
-                Brand:{" "}
-                <span className="font-medium text-gray-800">
-                  {carDetail.brand.name}
-                </span>
+                Hãng:{" "}
+                <strong className="text-gray-900">{carDetail.brand.name}</strong>
               </span>
             )}
             {carDetail.year && (
               <span className="text-lg text-gray-600">
-                📅 Year:{" "}
-                <span className="font-medium text-gray-800">
-                  {carDetail.year}
-                </span>
+                Năm sản xuất:{" "}
+                <strong className="text-gray-900">{carDetail.year}</strong>
               </span>
             )}
           </div>
 
-          {/* Thông tin mô tả */}
-          {carDetail.description && (
-            <div className="mt-4 border-t pt-6 text-gray-700 leading-relaxed">
-              <h2 className="text-2xl font-semibold mb-3 text-gray-900">
-                Mô tả chi tiết
-              </h2>
-              <PortableText value={carDetail.description}/>
-            </div>
-          )}
-        </div>
+          {/* Call to Action (SEO cũng thích phần này) */}
+          <aside className="mt-4">
+            <button className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl shadow">
+              Liên hệ tư vấn ngay
+            </button>
+          </aside>
+        </header>
       </div>
-    </div>
-  )
+
+      {/* Mô tả sản phẩm */}
+      <section className="max-w-6xl mx-auto bg-white rounded-2xl p-10 shadow-lg mt-12">
+        <h2 className="text-3xl font-bold text-gray-900 mb-6">
+          Mô tả chi tiết sản phẩm
+        </h2>
+
+        <div className="prose prose-lg max-w-none prose-img:rounded-xl prose-headings:text-gray-900 prose-p:text-gray-700">
+          <PortableText
+            value={carDetail.description}
+            components={{
+              types: {
+                image: ({ value }) => (
+                  <Image
+                    src={urlFor(value).url()}
+                    alt={value?.alt || "Hình mô tả sản phẩm"}
+                    width={900}
+                    height={600}
+                    className="rounded-xl my-6"
+                  />
+                ),
+                videoEmbed: ({ value }) => (
+                  <div className="my-6">
+                    <iframe
+                      src={value.url}
+                      className="w-full aspect-video rounded-xl"
+                      allowFullScreen
+                    />
+                  </div>
+                ),
+              },
+            }}
+          />
+        </div>
+      </section>
+    </article>
+  );
 }
