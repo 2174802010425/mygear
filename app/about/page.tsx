@@ -128,7 +128,7 @@ export default function AboutPage() {
                     </a>
                 </div>
                 <p className="mt-4 text-sm text-gray-500">
-                    Địa chỉ cửa hàng: <strong className="text-gray-700">[ĐỊA CHỈ CỬA HÀNG CỦA BẠN]</strong>
+                    Địa chỉ cửa hàng: <strong className="text-gray-700">69/68 Đặng Thuỳ Trâm, Phường 13, đường Bình Thạnh, Thành phố Hồ Chí Minh</strong>
                 </p>
             </section>
 
